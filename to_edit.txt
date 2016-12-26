@@ -1,0 +1,2 @@
+package.json > seed
+bin/www > seed:server
