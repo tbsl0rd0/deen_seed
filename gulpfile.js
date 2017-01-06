@@ -1,8 +1,9 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var clean_css = require('gulp-clean-css');
 
-gulp.task('js.min.js', function () {
+gulp.task('index_js', function () {
 	return gulp.src([
     'node_modules/jquery/dist/jquery.min.js',
     'node_modules/angular/angular.min.js',
@@ -10,20 +11,30 @@ gulp.task('js.min.js', function () {
     'node_modules/underscore/underscore-min.js',
 		'node_modules/socket.io-client/dist/socket.io.js',
 
-		'client/socket/socket.js',
+		'client/socket/client_socket.js',
 
-    'client/components/components_bundle.js'
+    'client/components/bundle/index_components_bundle.js'
   ])
 	.pipe(concat('js.min.js'))
-  .pipe(uglify())
-	.pipe(gulp.dest('client/dist'));
+  .pipe(uglify({ mangle: false }))
+	.pipe(gulp.dest('client/dist/index/js'));
+});
+
+gulp.task('index_css', function () {
+	return gulp.src([
+		'client/fonts/fonts.css'
+  ])
+	.pipe(concat('css.min.css'))
+  .pipe(clean_css())
+	.pipe(gulp.dest('client/dist/index/css'));
 });
 
 gulp.task('watch', function () {
-	gulp.watch('client/components/components_bundle.js', ['js.min.js']);
+	gulp.watch('client/components/bundle/index_components_bundle.js', ['index_js']);
 });
 
 gulp.task('default', [
-	'js.min.js',
+	'index_js',
+	'index_css',
 	'watch'
 ]);

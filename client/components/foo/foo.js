@@ -1,4 +1,4 @@
-require('!style!css!./foo.css');
+require('./foo.less');
 var template = require('./foo.html');
 
 angular.module('foo', [])

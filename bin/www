@@ -1,17 +1,29 @@
 #!/usr/bin/env node
 
+var os = require('os');
+var cluster = require('cluster');
+
+if (process.env.node_env == 'production' && cluster.isMaster) {
+  for (var i = 0; i < os.cpus().length; i++) {
+    cluster.fork();
+  }
+
+  cluster.on('exit', function(worker, code, signal) {
+    cluster.fork();
+  });
+
+  return;
+}
+
 /**
  * Module dependencies.
  */
 
 var app = require('../app');
-var debug = require('debug')('seed:server');
+var debug = require('debug')('deen_seed:server');
 var http = require('http');
 
-var os = require('os');
-var cluster = require('cluster');
-
-var socket = require('../server/socket/socket');
+var server_socket = require('../server/socket/server_socket');
 
 /**
  * Get port from environment and store in Express.
@@ -26,23 +38,15 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
-socket.attach(server);
+server_socket.attach(server);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
+server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-if (cluster.isMaster) {
-  for (var i = 0; i < os.cpus().length; i++) {
-    cluster.fork();
-  }
-}
-else {
-  server.listen(port);
-}
 
 /**
  * Normalize a port into a number, string, or false.

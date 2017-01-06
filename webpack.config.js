@@ -2,16 +2,16 @@ var webpack = require('webpack');
 
 module.exports = {
   context: __dirname,
-  entry: { components: './client/components/components.js' },
+  entry: { index_components: './client/components/index_components.js' },
   output: {
-    path: 'client/components',
-    filename: 'components_bundle.js'
+    path: 'client/components/bundle',
+    filename: '[name]_bundle.js'
   },
   module : {
     loaders : [
       {
-        test : /\.css$/,
-        loader : 'style!css'
+        test : /\.less$/,
+        loader : 'style!css!less'
       },
       {
         test : /\.html$/,

@@ -5,4 +5,7 @@ aws.config.update({
   endpoint: process.env.node_env != 'production' ? 'http://localhost:8000' : ''
 });
 
-module.exports = new aws.DynamoDB();
+module.exports = {
+  dynamodb: new aws.DynamoDB(),
+  doc_client: new aws.DynamoDB.DocumentClient()
+};

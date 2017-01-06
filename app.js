@@ -6,9 +6,11 @@ var serve_favicon = require('serve-favicon');
 var express_session = require('express-session');
 var connect_dynamodb = require('connect-dynamodb')({ session: express_session });
 
-var dynamodb = require('./server/dynamodb/dynamodb');
+var dynamodb = require('./server/dynamodb/dynamodb').dynamodb;
 
 var index = require('./routes/index');
+
+require('./server/init/init');
 
 var app = express();
 
@@ -31,7 +33,6 @@ app.use(body_parser.urlencoded({ extended: false }));
 if (process.env.node_env != 'production') {
   app.use(express.static(path.join(__dirname, 'client/dist')));
 }
-app.use(express.static(path.join(__dirname, 'client/fonts')));
 
 app.use('/', index);
 

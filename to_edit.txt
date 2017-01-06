@@ -1,2 +1,2 @@
-package.json > seed
-bin/www > seed:server
+package.json > deen_seed
+bin/www > deen_seed:server

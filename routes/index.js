@@ -3,8 +3,8 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
   res.render('index', {
-    js: process.env.node_env != 'production' ? '/js.min.js' : '',
-    fonts: process.env.node_env != 'production' ? '/fonts.css' : ''
+    css: process.env.node_env != 'production' ? '/index/css/css.min.css' : '',
+    js: process.env.node_env != 'production' ? '/index/js/js.min.js' : ''
   });
 });
 

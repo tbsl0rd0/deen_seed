@@ -1,5 +1,5 @@
 {
-  "name": "seed",
+  "name": "deen_seed",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -19,16 +19,20 @@
     "serve-favicon": "=2.3.0",
     "socket.io": "=1.7.1",
     "socket.io-redis": "=2.0.1",
-    "underscore": "=1.8.3"
+    "underscore": "=1.8.3",
+    "uuid": "=3.0.1"
   },
   "devDependencies": {
     "css-loader": "=0.26.1",
     "gulp": "=3.9.1",
+    "gulp-clean-css": "=2.3.2",
     "gulp-concat": "=2.6.1",
     "gulp-uglify": "=2.0.0",
     "html-minify-loader": "=1.1.0",
+    "less": "=2.7.2",
+    "less-loader": "=2.2.3",
     "raw-loader": "=0.5.1",
     "style-loader": "=0.13.1",
-    "webpack": "^1.14.0"
+    "webpack": "=1.14.0"
   }
 }
