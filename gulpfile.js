@@ -22,6 +22,8 @@ gulp.task('index_js', function () {
 
 gulp.task('index_css', function () {
 	return gulp.src([
+		'node_modules/normalize.css/normalize.css',
+		
 		'client/fonts/fonts.css'
   ])
 	.pipe(concat('css.min.css'))
